@@ -22,6 +22,8 @@ gem "sass-rails", "~> 5.0"
 gem "simple_form"
 gem "title"
 gem "uglifier"
+gem 'jbuilder'
+gem 'oj'
 
 group :development do
   gem "quiet_assets"
