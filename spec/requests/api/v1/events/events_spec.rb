@@ -6,7 +6,7 @@ describe 'GET /v1/events/:id' do
 
     get "/v1/events/#{event.id}"
 
-    expect(reponse_json).to eq(
+    expect(response_json).to eq(
       {
         'address' => event.address,
         'ended_at' => event.ended_at,
