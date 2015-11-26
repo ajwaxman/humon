@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 describe Event, 'Validations' do
   it { should validate_presence_of(:lat) }
