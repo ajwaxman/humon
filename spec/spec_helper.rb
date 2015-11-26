@@ -1,23 +1,22 @@
-if ENV.fetch("COVERAGE", false)
-  require "simplecov"
-  SimpleCov.start "rails"
-end
+ENV['RAILS_ENV'] = 'test'
 
-require "webmock/rspec"
+require File.expand_path('../../config/environment', __FILE__)
 
-# http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'rspec/rails'
+require 'webmock/rspec'
+
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
+
 RSpec.configure do |config|
-  config.expect_with :rspec do |expectations|
-    expectations.syntax = :expect
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
   end
 
-  config.mock_with :rspec do |mocks|
-    mocks.syntax = :expect
-    mocks.verify_partial_doubles = true
-  end
-
-  config.example_status_persistence_file_path = "tmp/rspec_examples.txt"
-  config.order = :random
+  config.infer_spec_type_from_file_location!
+  config.fail_fast = true
+  config.infer_base_class_for_anonymous_controllers = false
+  config.order = 'random'
+  config.use_transactional_fixtures = false
 end
 
 WebMock.disable_net_connect!(allow_localhost: true)
